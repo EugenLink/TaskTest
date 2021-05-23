@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.App {
+  width: 500px;
+  margin: 0 auto;
+
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: black;
+}

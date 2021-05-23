@@ -1,0 +1,25 @@
+.mainPage {
+    padding: 100px 50px;
+
+    margin-top: 35%;
+}
+
+.auth-bth {
+    color: white !important;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-right: 50px;
+    font-weight: 400;
+    font-size: 20px;
+
+}
+
+.auth-bth_reg {
+    background: rgb(0,153,255);
+
+}
+
+.auth-bth_login {
+    background: rgb(88, 169, 30);
+    padding: 10px 60px;
+}
