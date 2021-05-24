@@ -1,8 +1,9 @@
 import './Reg.css';
-import  {useState} from 'react';
+import {useEffect, useState} from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import {Link} from "react-router-dom";
+import {useCookies} from "react-cookie";
 
 const SignupSchema = Yup.object().shape({
     fio: Yup.string()
@@ -31,6 +32,14 @@ function Reg({history}) {
 
     const [loading, setLoading] = useState(false)
     const [popup, setPopup] = useState(false)
+    const [cookies, setCookie] = useCookies(['name']);
+
+    useEffect(() => {
+        if (cookies['id']) {
+            const _id = cookies['id'] / 60 / 50 / 25;
+            history.push(`/${_id}`)
+        }
+    }, [])
     return (
         <div>
             <div className="register-page">

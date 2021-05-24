@@ -1,7 +1,7 @@
 import './Login.css';
 import {Field, Form, Formik} from "formik";
 import {Link} from "react-router-dom";
-import  {useState} from 'react';
+import {useEffect, useState} from 'react';
 import * as Yup from 'yup';
 import { useCookies } from 'react-cookie';
 
@@ -16,6 +16,15 @@ function Login({history}) {
     const [cookies, setCookie] = useCookies(['name']);
     const [loading, setLoading] = useState(false)
 
+
+    useEffect(() => {
+        if (cookies['id']) {
+            const _id = cookies['id'] / 60 / 50 / 25;
+            history.push(`/${_id}`)
+        }
+    }, [])
+
+
     return (
         <div className="register-page">
             {loading ? <div className='loading'><div className="loader">Loading...</div></div> : null}
@@ -29,18 +38,15 @@ function Login({history}) {
                 onSubmit={values => {
                     setLoading(true)
 
-                    var requestOptions = {
-                        method: 'GET',
-                        redirect: 'follow'
-                    };
 
-                    fetch(`https://volga24bot.com/task/register.php?email=${values['email']}&pass=${values['pass']}`)
+                    fetch(`https://volga24bot.com/task/register.php?email=${values['email']}&pass=${values['pass']}&method=auth`)
                         .then(response => response.json())
                         .then(result => {
 
                             if (result['access']) {
-                                setCookie('name', '32112', { path: '/' });
-                                history.push(`/${result['access'][0]}`)
+                                const _id = result['access'][0];
+                                setCookie('id', _id * 60 * 50 * 25, { path: '/' });
+                                history.push(`/${_id}`)
                             } else if (result['access_denied']) {
                                 setAuthError(true)
                             }

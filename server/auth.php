@@ -124,6 +124,33 @@ class User {
         }
     }
 
+    public function getUserData($config, $id) {
+        $mysqli = new mysqli($config->host, $config->user, $config->password, $config->db);
+        if ($mysqli->connect_error) {
+            $result = Array('error' => 'error with connection db');
+
+            $res = json_encode($result, 1);
+
+            echo $res;
+            die();
+        } else {
+
+            $query = "SELECT * FROM `Task` WHERE `id` = '{$id}'";
+
+            if ($result = $mysqli->query($query)) {
+                $row = $result->fetch_row();
+                $res = Array('access' => $row);
+                echo json_encode($res, 1);
+            } else {
+                $result = Array('error' => $mysqli->error);
+                $res = json_encode($result, 1);
+
+                echo $res;
+            }
+            $mysqli->close();
+        }
+    }
+
 }
 
 $_config = new Config();
@@ -139,12 +166,18 @@ if ($_POST) {
     $user = new User();
 
     $user->createUser($_config, $fio, $phone, $email, $pass, $passConfirm);
-} else if ($_GET) {
+} else if ($_GET['method'] === 'auth') {
     $email = $_GET['email'];
     $pass = $_GET['pass'];
 
     $user = new User();
 
     $user->authUser($_config, $email, $pass);
+
+} else if ($_GET['method'] === 'getData') {
+    $_id = $_GET['id'];
+
+    $user = new User();
+    $user->getUserData($_config, $_id);
 
 }

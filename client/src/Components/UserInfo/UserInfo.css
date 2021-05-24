@@ -1,0 +1,41 @@
+.user-info {
+    width: 500px;
+    height: 300px;
+    margin-top: 150px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0,0,0,.5);
+
+}
+
+.user-info p {
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 25px;
+    border-bottom: 1px solid grey;
+    margin-right: 50px;
+}
+
+.logOut {
+    background: #ef883f;
+    font-size: 18px;
+    margin-top: 25px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,.4);
+    color: white;
+    border: none;
+}
+
+.popup p {
+    border: none!important;
+    text-align: center;
+}
+
+.logOut-confirm {
+
+    background: #7abe45;
+
+}
