@@ -1,0 +1,11 @@
+.submit-bth__login {
+    background: #7abe45;
+}
+
+.signup-bth {
+    background: rgb(0,153,255);
+    margin: 0 auto;
+    width: 200px;
+    display: block;
+
+}

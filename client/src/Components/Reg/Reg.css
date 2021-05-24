@@ -168,3 +168,7 @@
     margin: 0 auto;
     display: block;
 }
+
+.auth-bth {
+    box-shadow: 0 0 5px rgba(0,0,0,.5);
+}

@@ -64,13 +64,13 @@ function Reg({history}) {
                         fetch("https://volga24bot.com/task/register.php", requestOptions)
                             .then(response => response.json())
                             .then(result => {
+
                                 if (result['access']) {
                                     setPopup(true);
                                 } else if (result['error']) {
                                     setEmailError(true)
                                 } else if (result['validError']){
                                     result['validError'].forEach((element) => {
-                                        console.log(element)
                                         if (element === 'pass') {
                                             setPassValid(true);
                                         } else if (element === 'phone') {
@@ -83,6 +83,8 @@ function Reg({history}) {
                                             setFioValid(true)
                                         }
                                     })
+                                } else {
+                                    alert('Произошла непредвиденная ошибка')
                                 }
                                 setLoading(false);
                             })
